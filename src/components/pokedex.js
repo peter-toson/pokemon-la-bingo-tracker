@@ -1,17 +1,28 @@
 import React from 'react';
 
-class PokemonButton extends React.Component {
-    onClick = () => {
-        this.props.onClickCallback(this.props.pokemon);
-    };
+function PokemonButton(props) {
+    return (
+        <input
+            className="PokemonButton"
+            type="button"
+            onClick={() => props.onClickCallback(props.pokemon)}
+            value={props.pokemon.name}
+        />
+    );
+}
 
-    render() {
-        return (
-            <>
-                <input type="button" onClick={this.onClick} value={this.props.pokemon.name} />
-            </>
-        );
-    }
+function PokedexButtons(props) {
+    return (
+        <div className="PokedexButtons">
+            {props.pokedex.map((pokemon) => (
+                <PokemonButton
+                    key={pokemon.key}
+                    pokemon={pokemon}
+                    onClickCallback={() => props.onClickCallback(pokemon)}
+                />
+            ))}
+        </div>
+    );
 }
 
 const types_gen6 = [
@@ -285,4 +296,4 @@ const la_bingo_dex = [
     { key: 34, dex: '034', name: 'Zubat', types: ['Poison', 'Flying'] },
 ];
 
-export { PokemonButton, la_bingo_dex, types_gen6 };
+export { PokemonButton, la_bingo_dex, types_gen6, PokedexButtons };
