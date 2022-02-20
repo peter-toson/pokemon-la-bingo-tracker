@@ -1,11 +1,71 @@
+import React from 'react';
+
 function BingoGoals(props) {
     return (
         <div className="BingoGoals">
             <h2>Bingo Goals</h2>
             <LABingoableSingleStagers tracked_mons={props.tracked_mons} />
             <CatchKoTypes tracked_mons={props.tracked_mons} types={props.types} />
+            <CountingGoal goal_name="Miss Fortune Sisters" />
+            <CountingGoal goal_name="Stunned Pokemon" />
+            <CountingGoal goal_name="High Flying Pokemon" />
+            <CountingGoal goal_name="" />
+            <CountingGoal goal_name="" />
         </div>
     );
+}
+
+class Counter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { counter: 0 };
+    }
+
+    increment = () => {
+        this.setState({ counter: this.state.counter + 1 });
+    };
+
+    decrement = () => {
+        this.setState({ counter: this.state.counter > 0 ? this.state.counter - 1 : 0 });
+    };
+
+    render() {
+        return (
+            <div className="Counter">
+                <input className="MinusButton" type="button" value="&#8211;" onClick={this.decrement} />
+                <div className="ManualCounter">{this.state.counter}</div>
+                <input className="PlusButton" type="button" value="+" onClick={this.increment} />
+            </div>
+        );
+    }
+}
+
+class CountingGoal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { goal_name: props.goal_name };
+    }
+
+    changeText = (event) => {
+        if (event.target.name === 'goal_name') {
+            this.setState({ goal_name: event.target.value });
+        }
+    };
+
+    render() {
+        return (
+            <div className="CountingGoal">
+                <Counter />
+                <input
+                    className="CountingGoalText"
+                    type="text"
+                    name="goal_name"
+                    value={this.state.goal_name}
+                    onChange={this.changeText}
+                />
+            </div>
+        );
+    }
 }
 
 function TrackerGoal(props) {
@@ -58,7 +118,7 @@ function CatchKoTypes(props) {
 }
 
 function LABingoableSingleStagers(props) {
-    const bingoable_single_stagers = new Set(['Chatot', 'Heracross', 'Pachirisu', 'Unown']);
+    const bingoable_single_stagers = new Set(['Chatot', 'Heracross', 'Pachirisu', 'Rotom', 'Unown']);
     const unique_dex_entries = new Set(
         props.tracked_mons
             /* only caught pokemon count */
@@ -72,8 +132,6 @@ function LABingoableSingleStagers(props) {
 
     const open_mons = new Array(...bingoable_single_stagers).filter((mon) => !unique_dex_entries.has(mon));
     const checked_mons = new Array(...unique_dex_entries);
-
-    console.log(bingoable_single_stagers, unique_dex_entries, open_mons, checked_mons);
 
     return (
         <TrackerGoal
