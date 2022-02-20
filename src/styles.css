@@ -9,6 +9,10 @@ h6 {
     font-size: 14px;
 }
 
+/* ******************************** */
+/* Pokedex Styling                  */
+/* ******************************** */
+
 .PokemonButton {
     background-color: rgb(200, 255, 200);
     border: 2px solid rgb(0, 127, 0);
@@ -20,6 +24,17 @@ h6 {
     text-align: left;
 }
 
+.PokedexButtons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+/* ******************************** */
+/* Edit Tracker Entry Styling       */
+/* ******************************** */
+
 .DeleteButton {
     background-color: rgb(255, 110, 110);
     border: 2px solid rgb(155, 0, 0);
@@ -29,13 +44,6 @@ h6 {
     height: 25px;
     margin: 1px 3px;
     text-align: left;
-}
-
-.PokedexButtons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
 }
 
 .EditLastPokemon {
@@ -62,6 +70,59 @@ h6 {
     display: flex;
     flex-flow: column;
 }
+
+/* ******************************** */
+/* Goal Styling                     */
+/* ******************************** */
+
+.GoalsAndStatistics {
+    display: grid;
+    grid-template-columns: 400px 500px;
+}
+
+.BingoGoals {
+    width: 400px;
+}
+
+.TrackerGoal {
+    display: flex;
+    grid-template-columns: auto auto;
+    align-items: left;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.AutoCounter {
+    display: flex;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.GoalDescription {
+    flex-grow: 1;
+}
+
+.GoalTitle {
+    font-weight: bold;
+}
+
+.GoalDetails {
+    display: flex;
+    gap: 3px;
+}
+
+.CheckedGoalDetail {
+    color: gray;
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+/* ******************************** */
+/* Table Styling                    */
+/* ******************************** */
 
 .StatisticsTable table {
     border-top: 1px solid black;

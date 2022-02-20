@@ -1,6 +1,7 @@
 import React from 'react';
 import { PokedexButtons } from './pokedex.js';
 import { TrackedPokemonStatisticsTable } from './tracker-statistics.js';
+import { BingoGoals } from './bingo-goals.js';
 
 const tracking_methods = ['catch', 'evolve', 'KO'];
 
@@ -122,11 +123,14 @@ class BingoTracker extends React.Component {
                         onClick={this.deleteLastPokemon}
                     />
                 </div>
-                <TrackedPokemonStatisticsTable
-                    tracked_mons={this.state.tracked_mons}
-                    methods={tracking_methods}
-                    types={this.props.types}
-                />
+                <div className="GoalsAndStatistics">
+                    <BingoGoals />
+                    <TrackedPokemonStatisticsTable
+                        tracked_mons={this.state.tracked_mons}
+                        methods={tracking_methods}
+                        types={this.props.types}
+                    />
+                </div>
                 <TrackedPokemonList tracked_mons={this.state.tracked_mons} />
             </div>
         );
@@ -137,13 +141,13 @@ function TrackedPokemonList(props) {
     return (
         <div className="TrackedPokemonList">
             <h2>Pokemon in Tracker: {props.tracked_mons.length}</h2>
-            <ul>
+            <ol>
                 {props.tracked_mons
                     .map((tracked_mon) => tracked_mon_to_string(tracked_mon))
                     .map((text, index) => (
                         <li key={index + '_' + text}>{text}</li>
                     ))}
-            </ul>
+            </ol>
         </div>
     );
 }
