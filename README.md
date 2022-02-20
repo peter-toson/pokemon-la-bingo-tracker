@@ -1,13 +1,20 @@
 # Pokemon Legends: Arceus Bingo Tracker
 
-Currently supports easy tracking of freshly caught/evolved/KO'd Pokemon
+Lastest Stable Release: https://pokemon-la-bingo-tracker.vercel.app/
 
-**Upcoming features:**
+**Features:**
+
+☑️ tracking of caught, evolved, and KO'd Pokemon
+
+☑️ general information about (unique) catches, evolutions, and KOs
 
 ☑️ counters for non-pokemon goals (e.g. the Miss Fortune Sisters)
 
 ☑️ support for weird / difficult to track goals (e.g. KO one of each type, 3 single stage pokemon)
 
-**Future features:**
+**Upcoming features:**
 
 🔲 nice Pokemon pictures to click on :)
+
+🔲 whatever the 5 or so streamers that will actually use it come up with
+
