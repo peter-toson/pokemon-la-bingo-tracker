@@ -1,7 +1,7 @@
 {
   "name": "pokemon-la-bingo-tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "but with reactified code",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {

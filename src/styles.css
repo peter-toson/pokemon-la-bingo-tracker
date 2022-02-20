@@ -16,15 +16,51 @@ h6 {
     font-weight: bold;
     width: 100px;
     height: 25px;
+    margin: 3px 1px;
+    text-align: left;
+}
+
+.DeleteButton {
+    background-color: rgb(255, 110, 110);
+    border: 2px solid rgb(155, 0, 0);
+    font-size: 12px;
+    font-weight: bold;
+    width: 150px;
+    height: 25px;
     margin: 1px 3px;
     text-align: left;
 }
 
 .PokedexButtons {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
+}
+
+.EditLastPokemon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.TrackedPokemon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.TrackedPokemonName {
+    font-weight: bold;
+    width: 150px;
+}
+
+.MethodRadioButtons {
+    display: flex;
+    flex-flow: column;
 }
 
 .StatisticsTable {
@@ -40,10 +76,12 @@ h6 {
     font-size: 12px;
     font-weight: bold;
     word-wrap: break-word;
+    text-align: center;
 }
 
 .StatisticsTable td:nth-child(1) {
     width: 80px;
+    text-align: left;
 }
 
 .StatisticsTable tr:nth-child(even) {
@@ -59,47 +97,4 @@ h6 {
     text-align: left;
     background-color: #04aa6d;
     color: white;
-}
-
-.edit_last_entry {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.toggle_button_group {
-    display: flex;
-    flex-direction: column;
-}
-
-.inactive_toggle {
-    background-color: rgb(204, 204, 204);
-    border: 2px solid rgb(59, 59, 57);
-    width: 70px;
-    height: 30px;
-    margin: 1px 5px;
-}
-
-.active_toggle {
-    background-color: rgb(112, 112, 112);
-    border: 2px solid rgb(0, 0, 0);
-    font-weight: bold;
-    width: 70px;
-    height: 30px;
-    margin: 1px 5px;
-}
-
-.last_pokemon_name {
-    width: 150px;
-    font-weight: bold;
-    margin: 1px 5px;
-}
-
-.remove_last {
-    background-color: rgb(255, 162, 162);
-    border: 2px solid rgb(127, 0, 0);
-    font-weight: bold;
-    width: 70px;
-    height: 30px;
-    margin: 1px 5px;
 }

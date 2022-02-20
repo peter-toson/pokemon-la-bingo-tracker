@@ -1,6 +1,50 @@
-import React from 'react';
+function PokemonButton(props) {
+    return (
+        <input
+            className="PokemonButton"
+            type="button"
+            onClick={() => props.onClickCallback(props.pokemon)}
+            value={props.pokemon.name}
+        />
+    );
+}
 
-const pokedex_info = [
+function PokedexButtons(props) {
+    return (
+        <div className="PokedexButtons">
+            {props.pokedex.map((pokemon) => (
+                <PokemonButton
+                    key={pokemon.key}
+                    pokemon={pokemon}
+                    onClickCallback={() => props.onClickCallback(pokemon)}
+                />
+            ))}
+        </div>
+    );
+}
+
+const types_gen6 = [
+    'Normal',
+    'Fire',
+    'Water',
+    'Grass',
+    'Electric',
+    'Ice',
+    'Fighting',
+    'Poison',
+    'Ground',
+    'Flying',
+    'Psychic',
+    'Bug',
+    'Rock',
+    'Ghost',
+    'Dark',
+    'Dragon',
+    'Steel',
+    'Fairy',
+];
+
+const la_bingo_dex = [
     { key: 223, dex: '218', name: 'Abomasnow', types: ['Ice', 'Grass'] },
     { key: 60, dex: '058', name: 'Abra', types: ['Psychic'] },
     { key: 80, dex: '078', name: 'Aipom', types: ['Normal'] },
@@ -220,7 +264,7 @@ const pokedex_info = [
     { key: 131, dex: '129', name: 'Togekiss', types: ['Fairy', 'Flying'] },
     { key: 129, dex: '127', name: 'Togepi', types: ['Fairy'] },
     { key: 130, dex: '128', name: 'Togetic', types: ['Fairy', 'Flying'] },
-    { key: 236, dex: '231', name: 'Tornadus', types: ['Flying'] },
+    // { key: 236, dex: '231', name: 'Tornadus', types: ['Flying'] },
     { key: 134, dex: '132', name: 'Torterra', types: ['Grass', 'Ground'] },
     { key: 102, dex: '100', name: 'Toxicroak', types: ['Poison', 'Fighting'] },
     { key: 132, dex: '130', name: 'Turtwig', types: ['Grass'] },
@@ -229,7 +273,7 @@ const pokedex_info = [
     { key: 144, dex: '142', name: 'Unown', types: ['Psychic'] },
     { key: 116, dex: '114', name: 'Ursaluna', types: ['Ground', 'Normal'] },
     { key: 115, dex: '113', name: 'Ursaring', types: ['Normal'] },
-    { key: 230, dex: '225', name: 'Uxie', types: ['Psychic'] },
+    //{ key: 230, dex: '225', name: 'Uxie', types: ['Psychic'] },
     { key: 26, dex: '026', name: 'Vaporeon', types: ['Water'] },
     { key: 73, dex: '071', name: 'Vespiquen', types: ['Bug', 'Flying'] },
     { key: 196, dex: '192', name: 'Voltorb', types: ['Electric', 'Grass'] },
@@ -250,259 +294,4 @@ const pokedex_info = [
     { key: 34, dex: '034', name: 'Zubat', types: ['Poison', 'Flying'] },
 ];
 
-const all_types = [...new Set(pokedex_info.reduce((result, entry) => result.concat(entry.types), new Array(0)))];
-
-class PokemonTracker extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            timestamp: Date.now(),
-            caught: [],
-        };
-    }
-
-    updateDimensions = () => {
-        //console.log('updateDimensions')
-        const now = Date.now();
-        if (now > this.state.timestamp + 100) {
-            //console.log('updateDimensions does something')
-            this.setState({
-                key: now,
-                caught: this.state.caught,
-            });
-        }
-    };
-
-    componentDidMount() {
-        window.addEventListener('resize', this.updateDimensions);
-    }
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.updateDimensions);
-    }
-
-    renderPokemonButton(pokedex_entry) {
-        return (
-            <button className="PokemonButton" onClick={() => this.handlePokemonClick(pokedex_entry)}>
-                {pokedex_entry.name}
-            </button>
-        );
-    }
-
-    renderPokedexButtons() {
-        const number_columns = Math.floor(window.innerWidth / 105 - 0.3);
-        const number_rows = Math.ceil(pokedex_info.length / number_columns);
-        const height = number_rows * 28;
-        const div_style = {
-            height: height + 'px',
-        };
-        //console.log(window.window.innerWidth, height);
-        return (
-            <div className="PokedexButtons" style={div_style}>
-                {pokedex_info.map((x) => this.renderPokemonButton(x))}
-            </div>
-        );
-    }
-
-    caught_entry_to_string(caught_entry) {
-        return caught_entry.state + (caught_entry.alpha ? ' Alpha ' : ' ') + caught_entry.pokemon.name;
-    }
-
-    renderCaughtPokemonList() {
-        return (
-            <div className="CaughtList">
-                <h3>Pokemon List</h3>
-                {this.state.caught.map((x) => (
-                    <>
-                        {this.caught_entry_to_string(x)}
-                        <br />
-                    </>
-                ))}
-            </div>
-        );
-    }
-
-    renderStatistics() {
-        function count(state, filter_func) {
-            const pre_filtered_entries = state.caught.filter((item) => filter_func(item));
-
-            const count_catches = pre_filtered_entries.filter((item) => {
-                return item.state === 'catch';
-            }).length;
-
-            const count_unique_catches = [
-                ...new Set(
-                    pre_filtered_entries.filter((item) => item.state === 'catch').map((item) => item.pokemon.dex)
-                ),
-            ].length;
-
-            const count_kos = pre_filtered_entries.filter((item) => item.state === 'KO').length;
-
-            const count_unique_kos = [
-                ...new Set(pre_filtered_entries.filter((item) => item.state === 'KO').map((item) => item.pokemon.dex)),
-            ].length;
-
-            const count_evos = pre_filtered_entries.filter((item) => item.state === 'evolve').length;
-
-            const count_unique_evos = [
-                ...new Set(
-                    pre_filtered_entries.filter((item) => item.state === 'evolve').map((item) => item.pokemon.dex)
-                ),
-            ].length;
-
-            return [count_catches, count_unique_catches, count_evos, count_unique_evos, count_kos, count_unique_kos];
-        }
-
-        function render(row_header, counts) {
-            return (
-                <tr>
-                    <td>{row_header}</td>
-                    {counts.map((entry) => (
-                        <td>{entry === 0 ? '' : entry}</td>
-                    ))}
-                </tr>
-            );
-        }
-
-        return (
-            <div className="Statistics">
-                <h3>Statistics</h3>
-                <table className="StatisticsTable">
-                    <thead>
-                        <tr>
-                            <th>category</th>
-                            <th>catches</th>
-                            <th>unique catches</th>
-                            <th>evolutions</th>
-                            <th>unique evolutions</th>
-                            <th>KO's</th>
-                            <th>unique KO's</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {render(
-                            'all Pokemon',
-                            count(this.state, (item) => {
-                                return true;
-                            })
-                        )}
-                        {render(
-                            'Alpha Pokemon',
-                            count(this.state, (item) => {
-                                return item.alpha;
-                            })
-                        )}
-                        {all_types.map((type) =>
-                            render(
-                                type + ' types',
-                                count(this.state, (item) => {
-                                    return item.pokemon.types.includes(type);
-                                })
-                            )
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
-
-    renderLastEntry() {
-        let alpha = null;
-        let state = null;
-        let last_pokemon_name = 'Last Pokemon';
-        const last = this.state.caught.length - 1;
-        if (last > -1) {
-            alpha = this.state.caught[last].alpha;
-            state = this.state.caught[last].state;
-            last_pokemon_name = this.state.caught[last].pokemon.name;
-        }
-        return (
-            <>
-                <h3>Edit Last Pokemon</h3>
-                <div className="edit_last_entry">
-                    <div className="toggle_button_group">
-                        <button
-                            className={state === 'catch' ? 'active_toggle' : 'inactive_toggle'}
-                            onClick={() => this.editLastPokemon('state', 'catch')}
-                        >
-                            Catch
-                        </button>
-                        <button
-                            className={state === 'evolve' ? 'active_toggle' : 'inactive_toggle'}
-                            onClick={() => this.editLastPokemon('state', 'evolve')}
-                        >
-                            Evolve
-                        </button>
-                        <button
-                            className={state === 'KO' ? 'active_toggle' : 'inactive_toggle'}
-                            onClick={() => this.editLastPokemon('state', 'KO')}
-                        >
-                            KO
-                        </button>
-                    </div>
-                    <div className="toggle_button_group">
-                        <button
-                            className={alpha === false ? 'active_toggle' : 'inactive_toggle'}
-                            onClick={() => this.editLastPokemon('alpha', false)}
-                        >
-                            Normal
-                        </button>
-                        <button
-                            className={alpha === true ? 'active_toggle' : 'inactive_toggle'}
-                            onClick={() => this.editLastPokemon('alpha', true)}
-                        >
-                            Alpha
-                        </button>
-                    </div>
-                    <div className="last_pokemon_name">{last_pokemon_name}</div>
-                    <button className="remove_last" onClick={() => this.removeLast()}>
-                        Remove
-                    </button>
-                </div>
-            </>
-        );
-    }
-
-    render() {
-        return (
-            <div className="PokemonTracker">
-                {this.renderPokedexButtons()}
-                {this.renderLastEntry()}
-                {this.renderStatistics()}
-                {this.renderCaughtPokemonList()}
-            </div>
-        );
-    }
-
-    handlePokemonClick(pokemon_info) {
-        const caught = this.state.caught.concat([{ pokemon: pokemon_info, alpha: false, state: 'catch' }]);
-
-        this.setState({ timestamp: Date.now(), caught: caught });
-    }
-
-    editLastPokemon(property, value) {
-        if (this.state.caught.length === 0) {
-            return;
-        }
-
-        let new_caught_list = this.state.caught.slice();
-        const last = new_caught_list.length - 1;
-
-        if (property === 'alpha') {
-            new_caught_list[last].alpha = value;
-        }
-        if (property === 'state') {
-            new_caught_list[last].state = value;
-        }
-        this.setState({ timestamp: Date.now(), caught: new_caught_list });
-    }
-
-    removeLast() {
-        if (this.state.caught.length === 0) {
-            return;
-        }
-        let new_caught_list = this.state.caught.slice(0, -1);
-        this.setState({ caught: new_caught_list });
-    }
-}
-
-export default PokemonTracker;
+export { PokedexButtons, la_bingo_dex, types_gen6 };
