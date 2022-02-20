@@ -55,7 +55,7 @@ h6 {
 
 .TrackedPokemonName {
     font-weight: bold;
-    width: 100px;
+    width: 150px;
 }
 
 .MethodRadioButtons {
@@ -76,10 +76,12 @@ h6 {
     font-size: 12px;
     font-weight: bold;
     word-wrap: break-word;
+    text-align: center;
 }
 
 .StatisticsTable td:nth-child(1) {
     width: 80px;
+    text-align: left;
 }
 
 .StatisticsTable tr:nth-child(even) {
@@ -95,47 +97,4 @@ h6 {
     text-align: left;
     background-color: #04aa6d;
     color: white;
-}
-
-.edit_last_entry {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.toggle_button_group {
-    display: flex;
-    flex-direction: column;
-}
-
-.inactive_toggle {
-    background-color: rgb(204, 204, 204);
-    border: 2px solid rgb(59, 59, 57);
-    width: 70px;
-    height: 30px;
-    margin: 1px 5px;
-}
-
-.active_toggle {
-    background-color: rgb(112, 112, 112);
-    border: 2px solid rgb(0, 0, 0);
-    font-weight: bold;
-    width: 70px;
-    height: 30px;
-    margin: 1px 5px;
-}
-
-.last_pokemon_name {
-    width: 150px;
-    font-weight: bold;
-    margin: 1px 5px;
-}
-
-.remove_last {
-    background-color: rgb(255, 162, 162);
-    border: 2px solid rgb(127, 0, 0);
-    font-weight: bold;
-    width: 70px;
-    height: 30px;
-    margin: 1px 5px;
 }

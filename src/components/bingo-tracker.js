@@ -112,6 +112,7 @@ class BingoTracker extends React.Component {
         //console.log('render', this.state, last_tracked_mon);
         return (
             <div className="BingoTracker">
+                <PokedexButtons pokedex={this.props.pokedex} onClickCallback={this.addPokemon} />
                 <div className="EditLastPokemon">
                     <TrackedPokemon tracked_mon={last_tracked_mon} onChangeCallback={this.editLastPokemon} />
                     <input
@@ -121,7 +122,11 @@ class BingoTracker extends React.Component {
                         onClick={this.deleteLastPokemon}
                     />
                 </div>
-                <PokedexButtons pokedex={this.props.pokedex} onClickCallback={this.addPokemon} />
+                <TrackedPokemonStatisticsTable
+                    tracked_mons={this.state.tracked_mons}
+                    methods={tracking_methods}
+                    types={this.props.types}
+                />
                 <TrackedPokemonList tracked_mons={this.state.tracked_mons} />
             </div>
         );
@@ -133,9 +138,11 @@ function TrackedPokemonList(props) {
         <div className="TrackedPokemonList">
             <h2>Pokemon in Tracker: {props.tracked_mons.length}</h2>
             <ul>
-                {props.tracked_mons.map((tracked_mon) => (
-                    <li>{tracked_mon_to_string(tracked_mon)}</li>
-                ))}
+                {props.tracked_mons
+                    .map((tracked_mon) => tracked_mon_to_string(tracked_mon))
+                    .map((text, index) => (
+                        <li key={index + '_' + text}>{text}</li>
+                    ))}
             </ul>
         </div>
     );
