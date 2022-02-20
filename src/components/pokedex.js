@@ -1,5 +1,3 @@
-import React from 'react';
-
 function PokemonButton(props) {
     return (
         <input
@@ -296,4 +294,4 @@ const la_bingo_dex = [
     { key: 34, dex: '034', name: 'Zubat', types: ['Poison', 'Flying'] },
 ];
 
-export { PokemonButton, la_bingo_dex, types_gen6, PokedexButtons };
+export { PokedexButtons, la_bingo_dex, types_gen6 };

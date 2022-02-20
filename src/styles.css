@@ -16,6 +16,17 @@ h6 {
     font-weight: bold;
     width: 100px;
     height: 25px;
+    margin: 3px 1px;
+    text-align: left;
+}
+
+.DeleteButton {
+    background-color: rgb(255, 110, 110);
+    border: 2px solid rgb(155, 0, 0);
+    font-size: 12px;
+    font-weight: bold;
+    width: 150px;
+    height: 25px;
     margin: 1px 3px;
     text-align: left;
 }
@@ -25,6 +36,31 @@ h6 {
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
+}
+
+.EditLastPokemon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.TrackedPokemon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.TrackedPokemonName {
+    font-weight: bold;
+    width: 100px;
+}
+
+.MethodRadioButtons {
+    display: flex;
+    flex-flow: column;
 }
 
 .StatisticsTable {
