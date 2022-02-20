@@ -9,6 +9,10 @@ h6 {
     font-size: 14px;
 }
 
+/* ******************************** */
+/* Pokedex Styling                  */
+/* ******************************** */
+
 .PokemonButton {
     background-color: rgb(200, 255, 200);
     border: 2px solid rgb(0, 127, 0);
@@ -18,7 +22,19 @@ h6 {
     height: 25px;
     margin: 3px 1px;
     text-align: left;
+    border-radius: 7px;
 }
+
+.PokedexButtons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+/* ******************************** */
+/* Edit Tracker Entry Styling       */
+/* ******************************** */
 
 .DeleteButton {
     background-color: rgb(255, 110, 110);
@@ -29,13 +45,7 @@ h6 {
     height: 25px;
     margin: 1px 3px;
     text-align: left;
-}
-
-.PokedexButtons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
+    border-radius: 7px;
 }
 
 .EditLastPokemon {
@@ -63,6 +73,100 @@ h6 {
     flex-flow: column;
 }
 
+/* ******************************** */
+/* Goal Styling                     */
+/* ******************************** */
+
+.GoalsAndStatistics {
+    display: grid;
+    grid-template-columns: 400px 500px;
+}
+
+.BingoGoals {
+    width: 390px;
+}
+
+.CountingGoal {
+    display: grid;
+    grid-template-columns: 120px 270px;
+    padding: 10px 0px;
+}
+
+.Counter {
+    display: flex;
+    align-items: center;
+}
+
+.MinusButton {
+    background-color: rgb(255, 110, 110);
+    border: 2px solid rgb(155, 0, 0);
+    font-size: 20px;
+    font-weight: bold;
+    width: 33px;
+    height: 33px;
+    margin: 1px 3px;
+    text-align: center;
+    border-radius: 7px;
+}
+.PlusButton {
+    background-color: rgb(200, 255, 200);
+    border: 2px solid rgb(0, 127, 0);
+    font-size: 20px;
+    font-weight: bold;
+    width: 33px;
+    height: 33px;
+    margin: 1px 3px;
+    text-align: center;
+    border-radius: 7px;
+}
+
+.ManualCounter {
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.TrackerGoal {
+    display: grid;
+    grid-template-columns: 60px 335px;
+    align-items: left;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.AutoCounter {
+    display: flex;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.GoalTitle {
+    font-weight: bold;
+}
+
+.GoalDetails {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2px 4px;
+}
+
+.CheckedGoalDetail {
+    color: gray;
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+/* ******************************** */
+/* Table Styling                    */
+/* ******************************** */
+
 .StatisticsTable table {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
@@ -88,7 +192,7 @@ h6 {
     text-align: left;
 }
 .StatisticsTable th:nth-child(1) {
-    width: 100px;
+    width: 110px;
     text-align: left;
 }
 
