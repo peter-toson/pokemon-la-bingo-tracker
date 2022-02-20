@@ -81,12 +81,12 @@ h6 {
 }
 
 .BingoGoals {
-    width: 400px;
+    width: 390px;
 }
 
 .TrackerGoal {
-    display: flex;
-    grid-template-columns: auto auto;
+    display: grid;
+    grid-template-columns: 60px 335px;
     align-items: left;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -94,15 +94,11 @@ h6 {
 
 .AutoCounter {
     display: flex;
-    width: 60px;
+    width: 50px;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     font-size: 20px;
-}
-
-.GoalDescription {
-    flex-grow: 1;
 }
 
 .GoalTitle {
@@ -111,7 +107,9 @@ h6 {
 
 .GoalDetails {
     display: flex;
-    gap: 3px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2px 4px;
 }
 
 .CheckedGoalDetail {

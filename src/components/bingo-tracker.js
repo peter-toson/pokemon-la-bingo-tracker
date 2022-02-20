@@ -124,7 +124,7 @@ class BingoTracker extends React.Component {
                     />
                 </div>
                 <div className="GoalsAndStatistics">
-                    <BingoGoals />
+                    <BingoGoals tracked_mons={this.state.tracked_mons} types={this.props.types} />
                     <TrackedPokemonStatisticsTable
                         tracked_mons={this.state.tracked_mons}
                         methods={tracking_methods}
