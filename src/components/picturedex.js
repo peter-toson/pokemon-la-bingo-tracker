@@ -1,5 +1,5 @@
 import React from 'react';
-import spritesheet from '../../public/img/spritesheet_la.png';
+import spritesheet from '../img/spritesheet_la.png';
 
 class Sprite extends React.Component {
     onClick = () => {
