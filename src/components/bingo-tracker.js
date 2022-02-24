@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokedexButtons } from './pokedex.js';
+import { PicturedexLA, Copyright } from './picturedex.js';
 import { TrackedPokemonStatisticsTable } from './tracker-statistics.js';
 import { BingoGoals } from './bingo-goals.js';
 
@@ -85,8 +85,7 @@ class BingoTracker extends React.Component {
         this.setState({ tracked_mons: new_tracked_mons });
     };
 
-    editLastPokemon = (event, tracked_mon) => {
-        //console.log('editLastPokemon', event, tracked_mon);
+    editLastPokemon = (event) => {
         if (this.state.tracked_mons.length === 0) {
             return;
         }
@@ -113,7 +112,7 @@ class BingoTracker extends React.Component {
         //console.log('render', this.state, last_tracked_mon);
         return (
             <div className="BingoTracker">
-                <PokedexButtons pokedex={this.props.pokedex} onClickCallback={this.addPokemon} />
+                <PicturedexLA dex={this.props.pokedex} callback={this.addPokemon} />
                 <div className="EditLastPokemon">
                     <TrackedPokemon tracked_mon={last_tracked_mon} onChangeCallback={this.editLastPokemon} />
                     <input
@@ -132,6 +131,7 @@ class BingoTracker extends React.Component {
                     />
                 </div>
                 <TrackedPokemonList tracked_mons={this.state.tracked_mons} />
+                <Copyright />
             </div>
         );
     }

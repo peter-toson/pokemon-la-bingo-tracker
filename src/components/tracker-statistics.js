@@ -6,7 +6,7 @@ function TrackedPokemonStatisticsTable(props) {
         <div className="StatisticsTable">
             <h2>Statistics</h2>
             <table>
-                <TableHeader methods={props.methods} />
+                <TableHeader methods={['obtained', 'catches', 'KOs']} />
                 <tbody>
                     <TableRow title="All Pokemon" counts={count_per_method(props.tracked_mons, props.methods)} />
                     <TableRow
@@ -16,16 +16,15 @@ function TrackedPokemonStatisticsTable(props) {
                             props.methods
                         )}
                     />
-                    {props.types.map((type) => (
-                        <TableRow
-                            key={type}
-                            title={type + ' Types'}
-                            counts={count_per_method(
-                                props.tracked_mons.filter((mon) => mon.pokemon.types.includes(type)),
-                                props.methods
-                            )}
-                        />
-                    ))}
+                    {props.types.map((type) => {
+                        const counts = count_per_method(
+                            props.tracked_mons.filter((mon) => mon.pokemon.types.includes(type))
+                        );
+                        if (counts.every((count) => count === 0)) {
+                            return null;
+                        }
+                        return <TableRow key={type} title={type + ' Types'} counts={counts} />;
+                    })}
                 </tbody>
             </table>
         </div>
@@ -59,13 +58,21 @@ function TableRow(props) {
     );
 }
 
-function count_per_method(tracked_pokemon, methods) {
+function count_per_method(tracked_pokemon) {
     let counts = [];
-    for (let method of methods) {
-        const pokemon_per_method = tracked_pokemon.filter((mon) => mon.method === method);
-        counts.push(pokemon_per_method.length);
-        counts.push(new Set(pokemon_per_method.map((entry) => entry.pokemon.dex)).size);
-    }
+
+    const obtained = tracked_pokemon.filter((mon) => mon.method === 'catch' || mon.method === 'evolve');
+    counts.push(obtained.length);
+    counts.push(new Set(obtained.map((entry) => entry.pokemon.dex)).size);
+
+    const caught = tracked_pokemon.filter((mon) => mon.method === 'catch');
+    counts.push(caught.length);
+    counts.push(new Set(caught.map((entry) => entry.pokemon.dex)).size);
+
+    const kos = tracked_pokemon.filter((mon) => mon.method === 'KO');
+    counts.push(kos.length);
+    counts.push(new Set(kos.map((entry) => entry.pokemon.dex)).size);
+
     return counts;
 }
 
