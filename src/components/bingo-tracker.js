@@ -1,5 +1,5 @@
 import React from 'react';
-import { PicturedexLA } from './picturedex.js';
+import { PicturedexLA, Copyright } from './picturedex.js';
 import { TrackedPokemonStatisticsTable } from './tracker-statistics.js';
 import { BingoGoals } from './bingo-goals.js';
 
@@ -131,6 +131,7 @@ class BingoTracker extends React.Component {
                     />
                 </div>
                 <TrackedPokemonList tracked_mons={this.state.tracked_mons} />
+                <Copyright />
             </div>
         );
     }
