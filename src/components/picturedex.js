@@ -1,5 +1,5 @@
 import React from 'react';
-import spritesheet from '../img/spritesheet_la.png';
+//import spritesheet from '../img/spritesheet_la.png';
 
 class Sprite extends React.Component {
     onClick = () => {
@@ -28,7 +28,7 @@ class Sprite extends React.Component {
         };
 
         const style_sprite = {
-            backgroundImage: `url(${spritesheet})`,
+            backgroundImage: `url(https://rawcdn.githack.com/peter-toson/pokemon-la-bingo-tracker/e1663eff03c2339e15b79a79c270270fb6a6d694/src/img/spritesheet_la.png)`,
             backgroundPosition: `${offset_x}px ${offset_y}px`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: `${bg_width}px ${bg_height}px`,
